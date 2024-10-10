@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".QuizQuestionsActivity">
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="32dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp">
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            tools:text="What does country this flag belongs to?"
+            android:textSize="48sp"
+            android:textColor="#000000"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="30dp" />
+
+        <TextView
+            android:id="@+id/optionOne"
+            style="@style/toggleButton"
+            tools:text="Argentina"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"/>
+
+        <TextView
+            android:id="@+id/optionTwo"
+            style="@style/toggleButton"
+            tools:text="Australia"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"/>
+
+        <TextView
+            android:id="@+id/optionThree"
+            style="@style/toggleButton"
+            tools:text="Armenia"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"/>
+
+        <TextView
+            android:id="@+id/optionFour"
+            style="@style/toggleButton"
+            tools:text="Austria"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"/>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Siguiente"
+            android:layout_marginTop="50dp"
+            android:textSize="18dp"
+            android:paddingVertical="10dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:backgroundTint="@color/space"/>
+    </LinearLayout>
+</LinearLayout>
