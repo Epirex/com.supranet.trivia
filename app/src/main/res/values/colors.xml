@@ -10,4 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="space">#000737</color>
     <color name="diente">#eec197</color>
+    <color name="camyenazul">#203b8f</color>
+    <color name="camyenrosa">#ff549e</color>
 </resources>

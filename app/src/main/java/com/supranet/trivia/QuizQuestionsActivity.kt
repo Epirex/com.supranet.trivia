@@ -11,12 +11,16 @@ import android.webkit.WebViewClient
 import android.widget.*
 import androidx.core.content.ContextCompat
 import com.tapadoo.alerter.Alerter
+import android.animation.ObjectAnimator
+import android.animation.AnimatorSet
+import android.view.animation.DecelerateInterpolator
 
 class QuizQuestionsActivity : AppCompatActivity() {
     private var totalScore = 0
     private var questionsList: ArrayList<Question> = ArrayList()
     private var currentQuestionIndex = 0
     private var selectedAlternativeIndex = -1
+    private var hasSelected = false
 
     private var tvQuestion: TextView? = null
     private var progressBar: ProgressBar? = null
@@ -96,17 +100,29 @@ class QuizQuestionsActivity : AppCompatActivity() {
     }
 
     private fun updateQuestion() {
+        hasSelected = false
         defaultAlternativesView()
 
-        tvQuestion?.text = questionsList[currentQuestionIndex].questionText
+        if (currentQuestionIndex >= questionsList.size) {
+            return
+        }
+
+        val currentQuestion = questionsList[currentQuestionIndex]
+
+        tvQuestion?.text = currentQuestion.questionText
         progressBar?.progress = currentQuestionIndex + 1
         tvProgress?.text = "${currentQuestionIndex + 1}/${questionsList.size}"
 
-        for (alternativeIndex in questionsList[currentQuestionIndex].alternatives.indices) {
-            tvAlternatives!![alternativeIndex].text = questionsList[currentQuestionIndex].alternatives[alternativeIndex]
+        if (tvAlternatives != null && tvAlternatives!!.size >= currentQuestion.alternatives.size) {
+            for (alternativeIndex in currentQuestion.alternatives.indices) {
+                tvAlternatives!![alternativeIndex].text = currentQuestion.alternatives[alternativeIndex]
+            }
+        } else {
+            //Toast.makeText(this, "Error: No hay suficientes opciones para mostrar.", Toast.LENGTH_SHORT).show()
         }
 
         btnNext?.text = "Siguiente"
+        animateElements()
     }
 
     private fun defaultAlternativesView() {
@@ -121,7 +137,10 @@ class QuizQuestionsActivity : AppCompatActivity() {
     }
 
     private fun selectedAlternativeView(option: TextView, index: Int) {
+        if (hasSelected) return
+
         selectedAlternativeIndex = index
+        hasSelected = true
 
         option.setTextColor(Color.parseColor("#363A43"))
         option.setTypeface(option.typeface, Typeface.BOLD)
@@ -148,4 +167,47 @@ class QuizQuestionsActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun animateElements() {
+        val fadeInDuration = 1200L
+
+        // Animación de opacidad para la pregunta
+        val questionAnimator = ObjectAnimator.ofFloat(tvQuestion, "alpha", 0f, 1f).apply {
+            duration = fadeInDuration
+        }
+
+        // Animación de escala para la pregunta
+        val scaleAnimatorX = ObjectAnimator.ofFloat(tvQuestion, "scaleX", 0f, 1f).apply {
+            duration = fadeInDuration
+        }
+        val scaleAnimatorY = ObjectAnimator.ofFloat(tvQuestion, "scaleY", 0f, 1f).apply {
+            duration = fadeInDuration
+        }
+
+        // Animación para el botón de siguiente
+        val buttonAnimator = ObjectAnimator.ofFloat(btnNext, "translationY", 100f, 0f).apply {
+            duration = fadeInDuration
+            interpolator = DecelerateInterpolator()
+        }
+
+        // Animaciones para las alternativas
+        val alternativesAnimators = tvAlternatives?.map { option ->
+            ObjectAnimator.ofFloat(option, "translationX", -100f, 0f).apply {
+                duration = fadeInDuration
+                interpolator = DecelerateInterpolator()
+            }
+        } ?: emptyList()
+
+        // Combinación de todas las animaciones
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(
+            questionAnimator,
+            scaleAnimatorX,
+            scaleAnimatorY,
+            buttonAnimator,
+            *alternativesAnimators.toTypedArray()
+        )
+        animatorSet.start()
+    }
+
 }

@@ -3,7 +3,7 @@ package com.supranet.trivia
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
 
@@ -18,7 +18,7 @@ class ResultActivity : AppCompatActivity() {
         score = intent.getIntExtra(Constants.SCORE, 0)
 
         val tvScore: TextView = findViewById(R.id.scoreTv)
-        val btnRestart: Button = findViewById(R.id.btnRestart)
+        val btnRestart: ImageButton = findViewById(R.id.btnRestart)
         val lottieAnimationView: LottieAnimationView = findViewById(R.id.lottieAnimationView)
 
         tvScore.text = "Tu puntuación es $score de $totalQuestions"
