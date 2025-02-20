@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.tapadoo.alerter.Alerter
 import android.animation.ObjectAnimator
 import android.animation.AnimatorSet
+import android.media.MediaPlayer
 import android.view.animation.DecelerateInterpolator
 
 class QuizQuestionsActivity : AppCompatActivity() {
@@ -149,6 +150,9 @@ class QuizQuestionsActivity : AppCompatActivity() {
             R.drawable.selected_option_border_bg
         )
 
+        val isCorrect = index == questionsList[currentQuestionIndex].correctAnswerIndex
+        playSound(isCorrect)
+
         highlightCorrectAndWrongAnswers(questionsList[currentQuestionIndex])
     }
 
@@ -210,4 +214,10 @@ class QuizQuestionsActivity : AppCompatActivity() {
         animatorSet.start()
     }
 
+    private fun playSound(isCorrect: Boolean) {
+        val soundRes = if (isCorrect) R.raw.correct else R.raw.wrong
+        val mediaPlayer = MediaPlayer.create(this, soundRes)
+        mediaPlayer.start()
+        mediaPlayer.setOnCompletionListener { it.release() }
+    }
 }
