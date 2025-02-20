@@ -33,7 +33,7 @@ object Constants {
             "¿Con qué otro nombre se conoce a la Rodocrosita?" to Pair("La rosa del Inca", listOf("La piedra del Inca", "La flor de la sangre", "La piedra rosa")),
             "¿En qué etapas se encuentran los proyectos de CAMYEN?" to Pair("Todas son correctas", listOf("En prospección", "En exploración", "En explotación")),
             "CAMYEN trabaja con Y-TEC (YPF Tecnología) para:" to Pair("Fabricar LFP (litio ferro fosfato) en Catamarca", listOf("Explotar yacimientos petrolíferos en Catamarca", "Realizar artesanías y joyas de rodocrosita", "Todas son correctas")),
-            "¿Con cuántas áreas mineras distribuidas en la Provincia cuenta CAMYEN?" to Pair("172", listOf("87", "243", "más de 300")),
+            "¿Con cuántas áreas mineras distribuidas en la Provincia cuenta CAMYEN?" to Pair("más de 300", listOf("87", "243", "172")),
             "¿Cuál de los siguientes NO es un valor de CAMYEN?" to Pair("Caridad", listOf("Transparencia", "Cuidado del Ambiente", "Consenso Social y Compromiso")),
             "¿Cuántos empleados tiene CAMYEN?" to Pair("Más de 70", listOf("Menos de 50", "50", "Más de 60")),
             "CAMYEN tiene un área donde se puede desarrollar la energía Geotérmica, ¿Dónde se ubica?" to Pair("Cerro Blanco", listOf("Minas Capillitas", "Cortaderas", "Cerro Atajo")),
